@@ -12,14 +12,24 @@
     <link rel="stylesheet" href="{% static 'grocery/css/global.css' %}" />
     <link rel="stylesheet" href="{% static 'grocery/css/single-item.css' %}" />
     <link rel="stylesheet" href="{% static 'grocery/css/items.css' %}" />
+    <link rel="stylesheet" href="{% static 'grocery/css/form.css' %}" />
   </head>
   <body>
     <section class="section-center">
+              <form>
+    <h2>grocery bud</h2>
+    <div class="form-control">
+      <input type="text" class="form-input" placeholder="e.g. Bread" />
+      <button type="submit" class="btn">add item</button>
+    </div>
       <!-- Items List -->
       <pre>
 <div class="items">
   {% for item in items %}
       <div class="single-item">
+
+  
+  </form>
           <form method="POST" action="{% url 'grocery:toggle' item.id %}">
               {% csrf_token %}
               <input type="checkbox"
