@@ -6,8 +6,15 @@ from .models import GroceryItem
 def index(request):
 
     items=GroceryItem.objects.all()
+    edit_id=request.GET.get('edit')
+    edit_id=None
+
+    if edit_id:
+       edit_item=get_object_or_404(GroceryItem, id=edit_id)
+
     context={
-        'items':items
+        'items':items,
+        'edit_id':edit_id,
     }
     return render(request, 'grocery/index.html',context)
 
@@ -34,5 +41,21 @@ def add_item(request):
       if name:
          GroceryItem.objects.create(name=name)
 
+
+      return redirect('grocery:index')
+
+def edit_item(request , item_id):
+
+
+      return redirect(f"/?edit={item_id}")
+
+
+def update_item(request , item_id):
+   if request.method=='POST':
+      item=get_object_or_404(GroceryItem, id=item_id)
+      name=request.POST.get('name')
+      if name:
+         item.name=name
+         item.save()
 
       return redirect('grocery:index')
