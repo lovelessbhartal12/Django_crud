@@ -18,3 +18,12 @@ def toggle_item(request, item_id):
     item.save()
     
     return redirect('grocery:index')
+
+
+def delete_item(request , item_id):
+   if request.method=='POST':
+    item=get_object_or_404(GroceryItem, id=item_id)
+    item.delete()
+
+    return redirect('grocery:index')
+   
