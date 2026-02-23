@@ -16,9 +16,9 @@
   </head>
   <body>
     <section class="section-center">
-      {% if messages %} {% for message in messages %}
+      <pre> {% if messages %} {% for message in messages %}
       <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-      {% endfor %} {% endif %}
+      {% endfor %} {% endif %}</pre>
       <form
         method="POST"
         action="{% if edit_item %}{% url 'grocery:update' edit_item.id %}{% else %}{% url 'grocery:add' %}{% endif %}"
